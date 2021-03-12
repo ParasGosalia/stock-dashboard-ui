@@ -23,9 +23,12 @@ target/
 /nbproject/private/
 /nbbuild/
 /dist/
+/node/
+/node_modules
 /nbdist/
 /.nb-gradle/
 build/
+true/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
