@@ -5,10 +5,10 @@ Stocks Dashboard UI Application
    i)This is a Spring Boot application which is just used to wrap the Angular application and provide a container to load the static files transpiled by typescript
    Below mentioned are details regarding the Angular application with Spring Boot build approach. 
    
-   ii) The reason for using this approach is there would be no need to install nodejs and npm in local system to
+   ii) The reason for using this approach is there would be no need to install nodejs and npm globally in your system to
    run this Angular application. 
    
-   iii) I have used **frontend-maven-plugin** which will first install nodejs and npm locally, then it will build the Angular code and generate the output in dist folder.
+   iii) I have used **frontend-maven-plugin** which will first install nodejs and npm locally in your application folder, then it will build the Angular code and generate the output in dist folder.
    
    iv) Once all the static files are generated into dist folder, **maven-resources-plugin** copies all the static files under target classes/static folder so that it would get wrapped into jar with the maven build .
    
@@ -64,6 +64,7 @@ Stocks Dashboard UI Application
           git checkout feature/version-1.0.0
 
        b) For this application you would need to run the below command in command prompt to run the application directly or build the jar and run the jar:
+          When you will build or run the project with the below command for the first time it will take more time as it will setup nodejs and node_modules folder locally in the application folder.
           mvn spring-boot:run
     
        c) Once the application is up and running. Please hit the below mentioned URL and enter username and password
