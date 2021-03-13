@@ -148,8 +148,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           this.recordCount=data.length;
           this.dataSource = new MatTableDataSource(data);
           this.dataSource.paginator=this.paginator;
-
-
         } else {
           this.toastr.warning('No Records found');
         }
@@ -178,5 +176,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   resetSearch()
   {
     this.searchStockForm.reset();
+    this.ngOnInit();
   }
 }
