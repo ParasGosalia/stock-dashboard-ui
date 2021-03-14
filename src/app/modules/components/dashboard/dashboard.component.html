@@ -1,0 +1,104 @@
+
+<div class="container">
+
+  <mat-tab-group >
+    <mat-tab label="Add Stocks" *ngIf="user=='admin'">
+      <ng-template matTabContent>
+        <form [formGroup]="addStockForm">
+          <div class= "form-group">
+            <mat-form-field class="form-field">
+              <mat-label>Stock Name</mat-label>
+              <input matInput type="text" formControlName="stockName">
+              <mat-error *ngIf="f.stockName.hasError('required')">
+                Stock Name is <strong>required</strong>
+               </mat-error>
+              <button mat-button *ngIf="f.stockName" matSuffix mat-icon-button aria-label="Clear" (click)="searchForm.value.stockName=''">
+              </button>
+            </mat-form-field>
+
+            <mat-form-field class="form-field">
+              <mat-label>Current Price</mat-label>
+              <input matInput type="number" min="0" formControlName="currentPrice">
+              <mat-error *ngIf="(f.currentPrice.hasError('min') || f.currentPrice.hasError('max')) && !f.currentPrice.hasError('required')">
+                Please enter a valid Price
+              </mat-error>
+              <mat-error *ngIf="f.currentPrice.hasError('required')">
+               Stock Price is <strong>required</strong>
+              </mat-error>
+              <button mat-button *ngIf="f.currentPrice" matSuffix mat-icon-button aria-label="Clear" (click)="searchForm.value.currentPrice=''">
+              </button>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" (click)="addStock()">Add</button>
+            <button mat-raised-button color="primary" style="margin-left: 1%;" (click)="reset()">Reset</button>
+          </div>
+
+            </form>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Search Stocks">
+      <ng-template matTabContent>
+        <form [formGroup]="searchStockForm">
+          <div class= "form-group">
+            <mat-form-field class="form-field">
+              <mat-label>Stock ID</mat-label>
+              <input matInput type="number" formControlName="stockId">
+              <mat-error *ngIf="(g.stockId.hasError('min') || g.stockId.hasError('max')) && !g.stockId.hasError('required')">
+                Please enter a valid StockId
+              </mat-error>
+              <mat-error *ngIf="g.stockId.hasError('required')">
+                Stock Id is <strong>required</strong>
+               </mat-error>
+              <button mat-button *ngIf="g.stockId" matSuffix mat-icon-button aria-label="Clear" (click)="searchForm.value.stockId=''">
+              </button>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" (click)="searchStockById()">Search</button>
+            <button mat-raised-button color="primary" style="margin-left: 1%;" (click)="resetSearch()">Reset</button>
+          </div>
+
+            </form>
+      </ng-template>
+    </mat-tab>
+
+</mat-tab-group>
+<div class="example-container">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+</div>
+
+<div class="mat-elevation-z8 mat-table">
+<table mat-table [dataSource]="dataSource" matSort>
+
+<!-- Offer ID Column -->
+<ng-container matColumnDef="Stock Id">
+<th mat-header-cell *matHeaderCellDef>Stock Id </th>
+<td mat-cell *matCellDef="let element"> {{element.stockId}} </td>
+</ng-container>
+
+<!-- Offer Name Column -->
+<ng-container matColumnDef="Stock Name">
+<th mat-header-cell *matHeaderCellDef> Stock Name </th>
+<td mat-cell *matCellDef="let element"> {{element.stockName}} </td>
+</ng-container>
+
+<!-- Offer URL Column -->
+<ng-container matColumnDef="Current Price">
+<th mat-header-cell *matHeaderCellDef > Current Price </th>
+<td mat-cell *matCellDef="let element"> {{element.currentPrice}} </td>
+</ng-container>
+
+<!-- Total Paid Amount-->
+<ng-container matColumnDef="Last Updated">
+<th mat-header-cell *matHeaderCellDef> Last Updated </th>
+<td mat-cell *matCellDef="let element"> {{element.lastUpdate}} </td>
+</ng-container>
+<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+</div>

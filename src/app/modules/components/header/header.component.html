@@ -1,0 +1,30 @@
+<div class = "container">
+    <div class="p-grid p-align-start vertical-container">
+        <div class="p-col">
+            <div class="box"><nav class="navbar">
+                <div class = "navbar-brand">
+                     <a class="navbar-item">
+
+                        <img src = "../../../../assets/images/stockMarket.jpg" height="75px" width="100px" >
+                     </a>
+
+                </div>
+            </nav>
+            </div>
+        </div>
+        <div class="p-col">
+            <div class="box">
+                    <h2 style="text-align: center; margin-top: -3%;">Stocks Dashboard</h2>
+            </div>
+        </div>
+        <div class="p-col">
+            <div class="box" *ngIf="user!=''">
+              <span class="material-icons" title="Logout" style="float: right;margin-right: 2%; margin-left: 1%;" (click)="logout()">
+                power_settings_new
+                </span>
+                <h4 style="text-align:right;margin-top:-3% ;">Welcome, {{user}}  </h4>
+            </div>
+        </div>
+    </div>
+
+</div>
